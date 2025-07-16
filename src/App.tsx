@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -22,31 +22,43 @@ function App() {
     // Initialize GSAP ScrollTrigger
     ScrollTrigger.refresh();
 
-    // Smooth scroll behavior
-    const lenis = {
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    };
-
-    // Add scroll-triggered animations
+    // Enhanced scroll-triggered animations
     gsap.utils.toArray('.animate-on-scroll').forEach((element: any) => {
       gsap.fromTo(
         element,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 50, scale: 0.95 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          scale: 1,
+          duration: 1,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: element,
-            start: 'top 80%',
-            end: 'bottom 20%',
+            start: 'top 85%',
+            end: 'bottom 15%',
             toggleActions: 'play none none reverse',
           },
         }
       );
     });
+
+    // Parallax effect for sections
+    gsap.utils.toArray('section').forEach((section: any) => {
+      gsap.to(section, {
+        yPercent: -10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    });
+
+    // Smooth scroll behavior with enhanced easing
+    // Note: lenis configuration removed as it was unused
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -54,15 +66,15 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-dark-900 text-white overflow-x-hidden">
-      {/* Particle Background */}
+    <div className="min-h-screen bg-dark-900 text-white overflow-x-hidden relative">
+      {/* Enhanced Particle Background */}
       <ParticleBackground />
       
       {/* Header */}
       <Header />
       
       {/* Main Content */}
-      <main>
+      <main className="relative z-10">
         <Hero />
         <Stats />
         <About />

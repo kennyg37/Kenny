@@ -16,58 +16,58 @@ export const experience: Experience[] = [
   {
     id: 1,
     company: "Andela",
-    position: "Senior Software Engineer",
-    startDate: "Jan 2023",
-    endDate: "Present",
+    position: "Fullstack Engineering Trainee",
+    startDate: "Feb 2024",
+    endDate: "Nov 2024",
     location: "Remote",
     type: "Full-time",
-    description: "Leading development of scalable web applications and mentoring junior developers in a fast-paced agile environment.",
+    description: "Worked on different projects with Andela and gained a variety of skills in fullstack engineering. Developed mobile apps for internal projects as part of the Andela apprenticeship.",
     achievements: [
-      "Led a team of 5 developers on a critical client project",
-      "Improved application performance by 40% through optimization",
-      "Implemented CI/CD pipelines reducing deployment time by 60%",
-      "Mentored 10+ junior developers across multiple projects",
-      "Architected microservices handling 1M+ daily requests"
+      "Developed mobile apps for internal projects as part of the Andela apprenticeship",
+      "Gained comprehensive fullstack engineering skills",
+      "Worked on various projects with Andela",
+      "Participated in daily stand-ups and communications",
+      "Used source control and project management tools"
     ],
-    technologies: ["React", "TypeScript", "Node.js", "AWS", "Docker", "PostgreSQL", "GraphQL"],
-    logo: "/assets/images/andela-logo.png"
+    technologies: ["React", "Node.js", "JavaScript", "TypeScript", "Mobile Development"],
+    logo: "/assets/images/logo_andela.svg"
   },
   {
     id: 2,
-    company: "BSC (Business Service Centre)",
-    position: "Full Stack Developer",
-    startDate: "Jun 2021",
-    endDate: "Dec 2022",
+    company: "Broadband Systems Corporation (BSC)",
+    position: "Cloud Engineering Intern",
+    startDate: "Jan 2024",
+    endDate: "April 2024",
     location: "Kigali, Rwanda",
-    type: "Full-time",
-    description: "Developed and maintained enterprise applications for government services, focusing on user experience and system reliability.",
+    type: "Internship",
+    description: "Developed cloud solutions for the company and dealt with the company's ticketing system. Worked on the company's cloud web platform.",
     achievements: [
-      "Built citizen portal serving 100K+ users monthly",
-      "Reduced system downtime by 80% through monitoring improvements",
-      "Implemented automated testing increasing code coverage to 90%",
-      "Led migration from legacy systems to modern tech stack",
-      "Collaborated with UX team to improve user satisfaction by 35%"
+      "Developed cloud solutions for the company",
+      "Managed the company's ticketing system",
+      "Worked on the company's cloud web platform",
+      "Gained experience in cloud infrastructure",
+      "Collaborated with IT teams on system improvements"
     ],
-    technologies: ["Vue.js", "Laravel", "MySQL", "Redis", "Linux", "Git"],
-    logo: "/assets/images/bsc-logo.png"
+    technologies: ["Cloud Computing", "Web Development", "System Administration", "Ticketing Systems"],
+    logo: "/assets/images/bsc.png"
   },
   {
     id: 3,
-    company: "GIC (Government Innovation Center)",
-    position: "Software Developer Intern",
-    startDate: "Jan 2021",
-    endDate: "May 2021",
+    company: "Gasabo Investment Company (GIC)",
+    position: "Software and Systems Engineer",
+    startDate: "Jun 2023",
+    endDate: "Jan 2025",
     location: "Kigali, Rwanda",
-    type: "Internship",
-    description: "Contributed to digital transformation initiatives and learned enterprise development practices in government technology projects.",
+    type: "Part-time",
+    description: "Worked on the internal investment tracking system for the company, developing software solutions for investment management.",
     achievements: [
-      "Developed mobile app prototype for citizen services",
-      "Participated in agile development processes",
-      "Created technical documentation for 5+ projects",
-      "Collaborated with cross-functional teams",
-      "Presented solutions to senior management"
+      "Developed internal investment tracking system",
+      "Created software solutions for investment management",
+      "Maintained and improved existing systems",
+      "Provided technical support for investment operations",
+      "Collaborated with investment teams on system requirements"
     ],
-    technologies: ["React Native", "Firebase", "JavaScript", "Git", "Figma"],
-    logo: "/assets/images/gic-logo.png"
+    technologies: ["Software Development", "System Engineering", "Investment Systems", "Database Management"],
+    logo: "/assets/images/GIC.jpg"
   }
 ];

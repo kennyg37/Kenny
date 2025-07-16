@@ -55,12 +55,6 @@ export const Stats: React.FC = () => {
               transition={{ delay: index * 0.1 }}
               className="text-center group"
             >
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                className="text-4xl mb-4 group-hover:animate-bounce"
-              >
-                {stat.icon}
-              </motion.div>
               <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                 <CountUp end={stat.value} suffix={stat.suffix} />
               </div>

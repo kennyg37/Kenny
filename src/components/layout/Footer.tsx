@@ -82,12 +82,9 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
+        <div className="mt-12 pt-8 border-t border-white/10 flex justify-center">
           <p className="text-gray-400 text-sm">
             © {currentYear} {personalInfo.name}. All rights reserved.
-          </p>
-          <p className="text-gray-400 text-sm mt-2 md:mt-0">
-            Built with ❤️ using React, TypeScript & Tailwind CSS
           </p>
         </div>
       </div>

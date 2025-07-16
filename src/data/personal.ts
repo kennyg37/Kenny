@@ -1,24 +1,38 @@
 export const personalInfo = {
-  name: "Your Name",
+  name: "Ken Ganza",
   title: "Full Stack Developer",
-  subtitle: "Building digital experiences with modern technologies",
-  bio: "Passionate full-stack developer with expertise in React, Node.js, and cloud technologies. I love creating innovative solutions that make a difference in people's lives.",
+  subtitle: "Crafting exceptional digital experiences with cutting-edge technologies",
+  bio: "Hi! I'm Ken Ganza, and I'm a developer who has passion for building clean web and mobile applications with intuitive functionalities and robust machine learning models and systems. I enjoy the process of turning ideas into reality using creative solutions. I'm always curious about learning new skills, tools, and concepts. In addition to working on various solo full stack projects, I have worked with creative teams, which involves daily stand-ups and communications, source control, and project management.",
   location: "Kigali, Rwanda",
-  email: "your.email@example.com",
-  phone: "+250 XXX XXX XXX",
-  website: "https://yourwebsite.com",
+  email: "kalisaken8@gmail.com",
+  phone: "+250790821822",
+  website: "https://kenganza.dev",
   
   social: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    twitter: "https://twitter.com/yourusername",
-    instagram: "https://instagram.com/yourusername",
+    github: "https://github.com/kennyg37",
+    linkedin: "https://linkedin.com/in/ken-ganza",
+    twitter: "https://twitter.com/grikrr",
+    instagram: "https://instagram.com/kenny_g37",
   },
   
-  resume: "/assets/resume.pdf",
+  resume: "/resume.pdf",
   
   availability: {
-    status: "Available for hire",
+    status: "Available for new opportunities",
     type: "Full-time, Contract, Freelance"
-  }
+  },
+
+  stats: {
+    projects: 18,
+    experience: 2,
+    clients: 7,
+    satisfaction: 100
+  },
+
+  skillsSummary: [
+    "React & TypeScript",
+    "Node.js & JavaScript", 
+    "Machine Learning",
+    "Web & Mobile Development"
+  ]
 };

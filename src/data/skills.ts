@@ -4,6 +4,7 @@ export interface Skill {
   category: 'Frontend' | 'Backend' | 'Database' | 'DevOps' | 'Mobile' | 'Design' | 'Other';
   proficiency: number; // 1-100
   icon: string;
+  logo?: string; // Optional path to logo image
   color: string;
   description: string;
   yearsOfExperience: number;
@@ -14,6 +15,7 @@ export interface Tool {
   name: string;
   category: 'Development' | 'Design' | 'Productivity' | 'DevOps';
   icon: string;
+  logo?: string; // Optional path to logo image
   description: string;
 }
 
@@ -21,183 +23,143 @@ export const skills: Skill[] = [
   // Frontend
   {
     id: 1,
-    name: "React",
+    name: "HTML5",
     category: "Frontend",
     proficiency: 95,
-    icon: "⚛️",
-    color: "#61DAFB",
-    description: "Advanced React development with hooks, context, and modern patterns",
-    yearsOfExperience: 4
+    icon: "🌐",
+    logo: "/assets/images/html5.png",
+    color: "#E34F26",
+    description: "Semantic HTML markup and accessibility best practices",
+    yearsOfExperience: 2
   },
   {
     id: 2,
-    name: "TypeScript",
+    name: "CSS3",
     category: "Frontend",
     proficiency: 90,
-    icon: "🔷",
-    color: "#3178C6",
-    description: "Strong typing, advanced types, and enterprise-level TypeScript",
-    yearsOfExperience: 3
+    icon: "🎨",
+    logo: "/assets/images/css3.png",
+    color: "#1572B6",
+    description: "Advanced CSS including Flexbox, Grid, and animations",
+    yearsOfExperience: 2
   },
   {
     id: 3,
-    name: "Next.js",
+    name: "JavaScript",
     category: "Frontend",
     proficiency: 85,
-    icon: "▲",
-    color: "#000000",
-    description: "Full-stack React framework with SSR and API routes",
+    icon: "📜",
+    logo: "/assets/images/javascript.png",
+    color: "#F7DF1E",
+    description: "ES6+ features, DOM manipulation, and modern JavaScript",
     yearsOfExperience: 2
   },
   {
     id: 4,
-    name: "Vue.js",
+    name: "TypeScript",
     category: "Frontend",
     proficiency: 80,
-    icon: "💚",
-    color: "#4FC08D",
-    description: "Progressive framework with Vuex and Vue Router",
-    yearsOfExperience: 2
+    icon: "🔷",
+    logo: "/assets/images/typescript.png",
+    color: "#3178C6",
+    description: "Type-safe JavaScript development with advanced types",
+    yearsOfExperience: 1
   },
   {
     id: 5,
-    name: "Tailwind CSS",
+    name: "React",
     category: "Frontend",
-    proficiency: 90,
-    icon: "🎨",
-    color: "#06B6D4",
-    description: "Utility-first CSS framework for rapid UI development",
-    yearsOfExperience: 3
+    proficiency: 85,
+    icon: "⚛️",
+    logo: "/assets/images/react.png",
+    color: "#61DAFB",
+    description: "Modern React with hooks, context, and component architecture",
+    yearsOfExperience: 2
   },
-  
-  // Backend
   {
     id: 6,
-    name: "Node.js",
-    category: "Backend",
-    proficiency: 90,
-    icon: "🟢",
-    color: "#339933",
-    description: "Server-side JavaScript with Express and modern frameworks",
-    yearsOfExperience: 4
+    name: "Vue.js",
+    category: "Frontend",
+    proficiency: 70,
+    icon: "💚",
+    logo: "/assets/images/vue.png",
+    color: "#4FC08D",
+    description: "Progressive framework with Vuex and Vue Router",
+    yearsOfExperience: 1
   },
   {
     id: 7,
-    name: "Python",
-    category: "Backend",
-    proficiency: 85,
-    icon: "🐍",
-    color: "#3776AB",
-    description: "Django, Flask, and data science applications",
-    yearsOfExperience: 3
+    name: "Angular",
+    category: "Frontend",
+    proficiency: 65,
+    icon: "🅰️",
+    logo: "/assets/images/angular.png",
+    color: "#DD0031",
+    description: "Full-featured framework with TypeScript integration",
+    yearsOfExperience: 1
   },
+
+  // Backend
   {
-    id: 8,
-    name: "PHP",
-    category: "Backend",
-    proficiency: 75,
-    icon: "🐘",
-    color: "#777BB4",
-    description: "Laravel framework and modern PHP development",
-    yearsOfExperience: 2
-  },
-  {
-    id: 9,
-    name: "GraphQL",
+    id: 11,
+    name: "Node.js",
     category: "Backend",
     proficiency: 80,
-    icon: "🔗",
-    color: "#E10098",
-    description: "API design and implementation with Apollo",
+    icon: "🟢",
+    logo: "/assets/images/nodejs.png",
+    color: "#339933",
+    description: "Server-side JavaScript with Express and modern frameworks",
     yearsOfExperience: 2
+  },
+  {
+    id: 12,
+    name: "Firebase",
+    category: "Backend",
+    proficiency: 70,
+    icon: "🔥",
+    logo: "/assets/images/firebase.png",
+    color: "#FFCA28",
+    description: "Backend-as-a-Service with real-time database",
+    yearsOfExperience: 1
   },
   
   // Database
   {
-    id: 10,
-    name: "PostgreSQL",
-    category: "Database",
-    proficiency: 85,
-    icon: "🐘",
-    color: "#336791",
-    description: "Advanced SQL, optimization, and database design",
-    yearsOfExperience: 3
-  },
-  {
-    id: 11,
+    id: 13,
     name: "MongoDB",
     category: "Database",
-    proficiency: 80,
+    proficiency: 75,
     icon: "🍃",
+    logo: "/assets/images/mongodb.png",
     color: "#47A248",
     description: "NoSQL database design and aggregation pipelines",
-    yearsOfExperience: 3
-  },
-  {
-    id: 12,
-    name: "Redis",
-    category: "Database",
-    proficiency: 75,
-    icon: "🔴",
-    color: "#DC382D",
-    description: "Caching, session management, and pub/sub",
     yearsOfExperience: 2
   },
   
   // DevOps
   {
-    id: 13,
-    name: "AWS",
-    category: "DevOps",
-    proficiency: 80,
-    icon: "☁️",
-    color: "#FF9900",
-    description: "EC2, S3, Lambda, RDS, and cloud architecture",
-    yearsOfExperience: 2
-  },
-  {
     id: 14,
-    name: "Docker",
-    category: "DevOps",
-    proficiency: 85,
-    icon: "🐳",
-    color: "#2496ED",
-    description: "Containerization and orchestration",
-    yearsOfExperience: 3
-  },
-  {
-    id: 15,
     name: "Git",
     category: "DevOps",
-    proficiency: 90,
+    proficiency: 85,
     icon: "📝",
+    logo: "/assets/images/git.png",
     color: "#F05032",
     description: "Version control, branching strategies, and collaboration",
-    yearsOfExperience: 5
+    yearsOfExperience: 2
   },
   
-  // Mobile
+ 
   {
     id: 16,
-    name: "React Native",
-    category: "Mobile",
-    proficiency: 75,
-    icon: "📱",
-    color: "#61DAFB",
-    description: "Cross-platform mobile app development",
-    yearsOfExperience: 2
-  },
-  
-  // Design
-  {
-    id: 17,
-    name: "Figma",
+    name: "Photoshop",
     category: "Design",
-    proficiency: 70,
+    proficiency: 65,
     icon: "🎨",
-    color: "#F24E1E",
-    description: "UI/UX design and prototyping",
-    yearsOfExperience: 2
+    logo: "/assets/images/photoshop.png",
+    color: "#31A8FF",
+    description: "Image editing and graphic design",
+    yearsOfExperience: 1
   }
 ];
 
@@ -207,52 +169,90 @@ export const tools: Tool[] = [
     name: "VS Code",
     category: "Development",
     icon: "💻",
+    logo: "/assets/images/vs-code.png",
     description: "Primary code editor with extensive customization"
   },
   {
     id: 2,
-    name: "Postman",
-    category: "Development",
-    icon: "📮",
-    description: "API testing and documentation"
+    name: "Git",
+    category: "DevOps",
+    icon: "📝",
+    logo: "/assets/images/git.png",
+    description: "Version control and collaboration"
   },
   {
     id: 3,
-    name: "Figma",
-    category: "Design",
-    icon: "🎨",
-    description: "Design collaboration and prototyping"
+    name: "NPM",
+    category: "Development",
+    icon: "📦",
+    logo: "/assets/images/npm.png",
+    description: "Package management for Node.js"
   },
   {
     id: 4,
-    name: "Notion",
-    category: "Productivity",
-    icon: "📝",
-    description: "Project management and documentation"
+    name: "Webpack",
+    category: "Development",
+    icon: "📦",
+    logo: "/assets/images/webpack.png",
+    description: "Module bundler for JavaScript applications"
   },
   {
     id: 5,
-    name: "Slack",
-    category: "Productivity",
-    icon: "💬",
-    description: "Team communication and collaboration"
+    name: "Gulp",
+    category: "Development",
+    icon: "⚡",
+    logo: "/assets/images/gulp.png",
+    description: "Task automation and build tool"
   },
   {
     id: 6,
-    name: "GitHub",
-    category: "DevOps",
-    icon: "🐙",
-    description: "Code hosting and CI/CD pipelines"
+    name: "Command Line",
+    category: "Development",
+    icon: "💻",
+    logo: "/assets/images/command.png",
+    description: "Terminal and shell scripting"
+  },
+  {
+    id: 7,
+    name: "Trello",
+    category: "Productivity",
+    icon: "📋",
+    logo: "/assets/images/trello.png",
+    description: "Project management and task tracking"
+  },
+  {
+    id: 8,
+    name: "ClickUp",
+    category: "Productivity",
+    icon: "📋",
+    logo: "/assets/images/clickup.png",
+    description: "All-in-one project management platform"
+  },
+  {
+    id: 9,
+    name: "Slack",
+    category: "Productivity",
+    icon: "💬",
+    logo: "/assets/images/slack.png",
+    description: "Team communication and collaboration"
+  },
+  {
+    id: 10,
+    name: "Ajax",
+    category: "Development",
+    icon: "🔄",
+    logo: "/assets/images/ajax.png",
+    description: "Asynchronous JavaScript and XML"
   }
 ];
 
 export const skillCategories = [
   'All',
   'Frontend',
-  'Backend',
+  'Backend', 
   'Database',
   'DevOps',
   'Mobile',
   'Design',
   'Other'
-] as const;
+];

@@ -8,6 +8,7 @@ interface CardProps {
   hover?: boolean;
   glass?: boolean;
   padding?: 'none' | 'sm' | 'md' | 'lg';
+  onClick?: () => void;
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -15,7 +16,8 @@ export const Card: React.FC<CardProps> = ({
   className,
   hover = true,
   glass = true,
-  padding = 'md'
+  padding = 'md',
+  onClick
 }) => {
   const paddingClasses = {
     none: '',
@@ -31,6 +33,7 @@ export const Card: React.FC<CardProps> = ({
       viewport={{ once: true }}
       whileHover={hover ? { y: -5, scale: 1.02 } : {}}
       transition={{ duration: 0.3 }}
+      onClick={onClick}
       className={clsx(
         'rounded-xl border transition-all duration-300',
         glass ? 'glass border-white/10' : 'bg-dark-800 border-dark-700',

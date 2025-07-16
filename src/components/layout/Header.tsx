@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download, Sun, Moon } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { personalInfo } from '../../data/personal';
 

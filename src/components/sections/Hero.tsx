@@ -1,67 +1,94 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Download, Mail } from 'lucide-react';
+import { ChevronDown, Download, Mail, Volume2, VolumeX } from 'lucide-react';
 import { gsap } from 'gsap';
 import { Button } from '../ui/Button';
 import { personalInfo } from '../../data/personal';
+import { ThreeBackground } from '../effects/ThreeBackground';
+import { soundManager } from '../../utils/soundEffects';
 
 export const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const [isSoundEnabled, setIsSoundEnabled] = React.useState(true);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate title letters
+      // Animate title letters with more dramatic effect
       if (titleRef.current) {
         gsap.fromTo(
           titleRef.current.children,
-          { y: 100, opacity: 0 },
+          { y: 100, opacity: 0, rotationX: -90 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.1,
+            rotationX: 0,
+            duration: 1.2,
+            stagger: 0.08,
             ease: 'power3.out',
             delay: 0.5
           }
         );
       }
 
-      // Animate subtitle
+      // Animate subtitle with wave effect
       if (subtitleRef.current) {
         gsap.fromTo(
           subtitleRef.current,
-          { y: 50, opacity: 0 },
+          { y: 50, opacity: 0, scale: 0.8 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
+            scale: 1,
+            duration: 1,
             ease: 'power3.out',
-            delay: 1.2
+            delay: 1.5
           }
         );
       }
 
-      // Floating animation for decorative elements
+      // Enhanced floating animation
       gsap.to('.floating-element', {
-        y: -20,
-        duration: 3,
+        y: -30,
+        rotation: 360,
+        duration: 4,
         ease: 'power2.inOut',
         yoyo: true,
         repeat: -1,
-        stagger: 0.5
+        stagger: 0.8
       });
+
+      // Animate skills summary
+      gsap.fromTo(
+        '.skill-tag',
+        { x: -50, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out',
+          delay: 2
+        }
+      );
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
   const scrollToNext = () => {
+    soundManager.playClickSound();
     const nextSection = document.getElementById('about');
     if (nextSection) {
       nextSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const toggleSound = () => {
+    const newState = soundManager.toggleSound();
+    setIsSoundEnabled(newState);
+    soundManager.playClickSound();
   };
 
   return (
@@ -70,12 +97,26 @@ export const Hero: React.FC = () => {
       ref={heroRef}
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
+      {/* 3D Background */}
+      <ThreeBackground />
+      
       {/* Decorative Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="floating-element absolute top-20 left-10 w-20 h-20 bg-gradient-to-r from-primary-500/20 to-purple-500/20 rounded-full blur-xl" />
         <div className="floating-element absolute top-40 right-20 w-32 h-32 bg-gradient-to-r from-pink-500/20 to-primary-500/20 rounded-full blur-xl" />
         <div className="floating-element absolute bottom-20 left-20 w-24 h-24 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-xl" />
       </div>
+
+      {/* Sound Toggle */}
+      <motion.button
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 2.5 }}
+        onClick={toggleSound}
+        className="absolute top-8 right-8 z-50 p-3 rounded-full glass hover:bg-white/10 transition-all duration-300"
+      >
+        {isSoundEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
+      </motion.button>
 
       <div className="container-custom section-padding text-center relative z-10">
         <motion.div
@@ -123,6 +164,23 @@ export const Hero: React.FC = () => {
           >
             {personalInfo.subtitle}
           </p>
+
+          {/* Skills Summary */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8 }}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            {personalInfo.skillsSummary.map((skill, index) => (
+              <span
+                key={index}
+                className="skill-tag px-4 py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-sm text-gray-300 hover:text-white transition-colors duration-300"
+              >
+                {skill}
+              </span>
+            ))}
+          </motion.div>
 
           {/* Status Badge */}
           <motion.div
