@@ -12,19 +12,20 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.1.1",
     "@types/node": "^24.0.14",
     "@types/three": "^0.178.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.23.6",
     "gsap": "^3.13.0",
+    "lenis": "^1.3.15",
     "lucide-react": "^0.525.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.60.0",
     "react-intersection-observer": "^9.8.0",
     "react-router-dom": "^6.28.0",
-    "tailwind-merge": "^3.3.1",
+    "tailwind-merge": "^3.4.0",
     "three": "^0.178.0",
     "zod": "^4.0.5"
   },
