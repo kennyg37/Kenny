@@ -29,28 +29,33 @@ export default function Works() {
                     }
                 }
             )
-
-            // Hover Interaction
-            const schematic = card.querySelector('.schematic-layer')
-            const code = card.querySelector('.code-layer')
-            const border = card.querySelector('.card-border')
-
-            card.addEventListener('mouseenter', () => {
-                gsap.to(schematic, { opacity: 0.1, scale: 0.95, duration: 0.4 })
-                gsap.to(code, { opacity: 1, scale: 1, duration: 0.4 })
-                gsap.to(border, { borderColor: '#ff9d00', boxShadow: '0 0 20px rgba(255, 157, 0, 0.2)', duration: 0.3 })
-            })
-
-            card.addEventListener('mouseleave', () => {
-                gsap.to(schematic, { opacity: 1, scale: 1, duration: 0.4 })
-                gsap.to(code, { opacity: 0, scale: 0.95, duration: 0.4 })
-                gsap.to(border, { borderColor: '#262626', boxShadow: 'none', duration: 0.3 })
-            })
         })
     }, { scope: containerRef })
 
+    const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+        const card = e.currentTarget
+        const schematic = card.querySelector('.schematic-layer')
+        const code = card.querySelector('.code-layer')
+        const border = card.querySelector('.card-border')
+
+        gsap.to(schematic, { opacity: 0.1, scale: 0.95, duration: 0.4 })
+        gsap.to(code, { opacity: 1, scale: 1, duration: 0.4 })
+        gsap.to(border, { borderColor: '#ff9d00', boxShadow: '0 0 20px rgba(255, 157, 0, 0.2)', duration: 0.3 })
+    }
+
+    const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+        const card = e.currentTarget
+        const schematic = card.querySelector('.schematic-layer')
+        const code = card.querySelector('.code-layer')
+        const border = card.querySelector('.card-border')
+
+        gsap.to(schematic, { opacity: 1, scale: 1, duration: 0.4 })
+        gsap.to(code, { opacity: 0, scale: 0.95, duration: 0.4 })
+        gsap.to(border, { borderColor: '#262626', boxShadow: 'none', duration: 0.3 })
+    }
+
     return (
-        <section ref={containerRef} className="relative w-full py-32 px-4 md:px-12 bg-void-black text-off-white">
+        <section ref={containerRef} className="relative w-full py-32 px-4 md:px-12 bg-paper-white dark:bg-void-black text-ink-black dark:text-off-white transition-colors duration-500">
             <div className="max-w-7xl mx-auto">
                 <div className="flex items-center gap-4 mb-16">
                     <span className="w-3 h-3 bg-electric-amber rounded-full animate-pulse" />
@@ -63,17 +68,19 @@ export default function Works() {
                     {projects.map((project) => (
                         <div
                             key={project.id}
-                            className="project-card relative w-full aspect-[4/3] bg-void-black group cursor-none"
+                            className="project-card relative w-full aspect-[4/3] bg-subtle-gray dark:bg-void-black group cursor-none"
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
                         >
                             {/* Card Border */}
-                            <div className="card-border absolute inset-0 border border-tech-gray transition-colors duration-300" />
+                            <div className="card-border absolute inset-0 border border-tech-gray/20 dark:border-tech-gray transition-colors duration-300" />
 
                             {/* Content Container */}
                             <div className="absolute inset-0 p-8 flex flex-col justify-between overflow-hidden">
                                 {/* Header: ID + Title */}
                                 <div className="flex justify-between items-start z-10">
                                     <span className="font-mono text-xs text-tech-gray">PRJ-00{project.id}</span>
-                                    <h3 className="font-sans font-bold text-2xl tracking-tight">{project.title}</h3>
+                                    <h3 className="font-sans font-bold text-2xl tracking-tight text-ink-black dark:text-off-white">{project.title}</h3>
                                 </div>
 
                                 {/* Schematic Layer (Center) */}
@@ -82,14 +89,14 @@ export default function Works() {
                                 </div>
 
                                 {/* Code Layer (Hidden by default) */}
-                                <div className="code-layer absolute inset-0 bg-void-black/95 flex items-center justify-center p-8 opacity-0 transform scale-95">
+                                <div className="code-layer absolute inset-0 bg-paper-white/95 dark:bg-void-black/95 flex items-center justify-center p-8 opacity-0 transform scale-95">
                                     <pre className="font-mono text-xs text-electric-amber overflow-hidden">
                                         <code>{project.codeSnippet}</code>
                                     </pre>
                                 </div>
 
                                 {/* Footer: Tech Stack (Manifest Style) */}
-                                <div className="z-10 border-t border-tech-gray/50 pt-4 mt-auto">
+                                <div className="z-10 border-t border-tech-gray/20 dark:border-tech-gray/50 pt-4 mt-auto">
                                     <div className="flex flex-wrap gap-x-4 gap-y-2">
                                         {project.tech.map(t => (
                                             <span key={t} className="font-mono text-[10px] text-tech-gray uppercase tracking-wider">

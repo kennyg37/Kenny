@@ -10,7 +10,7 @@ export default function ExperienceLog() {
     }
 
     return (
-        <section ref={containerRef} className="relative w-full py-24 px-4 md:px-12 bg-void-black text-off-white">
+        <section ref={containerRef} className="relative w-full py-24 px-4 md:px-12 bg-paper-white dark:bg-void-black text-ink-black dark:text-off-white transition-colors duration-500">
             <div className="max-w-4xl mx-auto">
                 <div className="flex items-center gap-4 mb-16">
                     <span className="w-3 h-3 bg-electric-amber rounded-full animate-pulse" />
@@ -19,12 +19,12 @@ export default function ExperienceLog() {
                     </h2>
                 </div>
 
-                <div className="relative border-l border-tech-gray ml-3 md:ml-6 space-y-12">
+                <div className="relative border-l border-tech-gray/20 dark:border-tech-gray ml-3 md:ml-6 space-y-12">
                     {experienceData.map((item) => (
                         <div key={item.id} className="relative pl-8 md:pl-12 group">
                             {/* Timeline Node */}
                             <div
-                                className={`absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full border border-tech-gray bg-void-black transition-colors duration-300 ${expandedId === item.id ? 'bg-electric-amber border-electric-amber' : 'group-hover:bg-tech-gray'
+                                className={`absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full border border-tech-gray/50 dark:border-tech-gray bg-paper-white dark:bg-void-black transition-colors duration-300 ${expandedId === item.id ? 'bg-electric-amber border-electric-amber' : 'group-hover:bg-tech-gray'
                                     }`}
                             />
 
@@ -35,7 +35,7 @@ export default function ExperienceLog() {
                             >
                                 <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-8">
                                     <span className="font-mono text-sm text-tech-gray">{item.period}</span>
-                                    <h3 className="font-sans font-bold text-2xl md:text-3xl group-hover:text-electric-amber transition-colors duration-300">
+                                    <h3 className="font-sans font-bold text-2xl md:text-3xl text-ink-black dark:text-off-white group-hover:text-electric-amber transition-colors duration-300">
                                         {item.role} <span className="font-mono text-base text-tech-gray">@ {item.company}</span>
                                     </h3>
                                 </div>
@@ -46,7 +46,7 @@ export default function ExperienceLog() {
                                 className={`overflow-hidden transition-all duration-500 ease-in-out ${expandedId === item.id ? 'max-h-[500px] opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0'
                                     }`}
                             >
-                                <div className="font-mono text-sm text-off-white/80 space-y-4 border-l-2 border-electric-amber/20 pl-4">
+                                <div className="font-mono text-sm text-ink-black/80 dark:text-off-white/80 space-y-4 border-l-2 border-electric-amber/20 pl-4">
                                     {item.description.map((desc, i) => (
                                         <p key={i} className="typing-effect">
                                             {`> ${desc}`}
@@ -54,7 +54,7 @@ export default function ExperienceLog() {
                                     ))}
                                     <div className="flex flex-wrap gap-2 pt-4">
                                         {item.tech.map((tech) => (
-                                            <span key={tech} className="px-2 py-1 bg-tech-gray/20 text-electric-amber text-xs rounded-sm border border-tech-gray/50">
+                                            <span key={tech} className="px-2 py-1 bg-tech-gray/10 dark:bg-tech-gray/20 text-electric-amber text-xs rounded-sm border border-tech-gray/20 dark:border-tech-gray/50">
                                                 {tech}
                                             </span>
                                         ))}

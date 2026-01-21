@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import ContactTerminal from './ContactTerminal'
 
 export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null)
@@ -11,21 +12,26 @@ export default function Hero() {
     const useScramble = (element: HTMLElement | null, finalText: string, duration: number = 1) => {
         if (!element) return
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&'
-        let iterations = 0
+        const state = { i: 0 }
 
-        gsap.to({}, {
+        gsap.to(state, {
+            i: finalText.length,
             duration: duration,
+            ease: "none",
             onUpdate: () => {
+                const revealIndex = Math.floor(state.i)
                 element.innerText = finalText
                     .split('')
-                    .map((_, index) => {
-                        if (index < iterations) {
-                            return finalText[index]
+                    .map((char, index) => {
+                        if (index < revealIndex) {
+                            return char
                         }
-                        return chars[Math.floor(Math.random() * 26)]
+                        return chars[Math.floor(Math.random() * chars.length)]
                     })
                     .join('')
-                iterations += finalText.length / (duration * 60) // Approx 60fps
+            },
+            onComplete: () => {
+                element.innerText = finalText
             }
         })
     }
@@ -54,6 +60,8 @@ export default function Hero() {
 
         // Topology Canvas Animation
         const canvas = canvasRef.current
+        let animationFrameId: number
+
         if (canvas) {
             const ctx = canvas.getContext('2d')
             if (ctx) {
@@ -71,11 +79,13 @@ export default function Hero() {
                 }
 
                 const animate = () => {
-                    ctx.fillStyle = '#0a0a0a' // Void Black
+                    const isDark = document.documentElement.classList.contains('dark')
+
+                    ctx.fillStyle = isDark ? '#0a0a0a' : '#f5f5f5' // Void Black : Paper White
                     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-                    ctx.strokeStyle = '#262626' // Tech Gray
-                    ctx.fillStyle = '#ff9d00' // Electric Amber
+                    ctx.strokeStyle = isDark ? '#262626' : '#e5e5e5' // Tech Gray : Subtle Gray
+                    ctx.fillStyle = '#ff9d00' // Electric Amber (Constant accent)
 
                     nodes.forEach(node => {
                         node.x += node.vx
@@ -101,7 +111,7 @@ export default function Hero() {
                             }
                         })
                     })
-                    requestAnimationFrame(animate)
+                    animationFrameId = requestAnimationFrame(animate)
                 }
                 animate()
             }
@@ -114,24 +124,37 @@ export default function Hero() {
         if (title) useScramble(title, 'KEN GANZA', 2)
         if (subtitle) useScramble(subtitle, 'FULL STACK // SYSTEMS ARCHITECT', 2.5)
 
+        return () => {
+            clearInterval(logInterval)
+            if (animationFrameId) cancelAnimationFrame(animationFrameId)
+        }
+
     }, { scope: containerRef })
 
+
+
     return (
-        <section ref={containerRef} className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-void-black text-off-white">
+        <section ref={containerRef} className="relative min-h-screen w-full flex flex-col items-center overflow-x-hidden bg-paper-white dark:bg-void-black text-ink-black dark:text-off-white transition-colors duration-500 pt-16 pb-12">
             {/* Topology Canvas */}
             <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-30 pointer-events-none" />
 
-            <div className="z-10 text-center space-y-6">
-                <h1 id="hero-title" className="font-sans font-bold text-[10vw] leading-none tracking-tighter text-off-white">
-                    {/* Text injected by GSAP */}
-                </h1>
-                <p id="hero-subtitle" className="font-mono text-sm md:text-xl text-electric-amber tracking-[0.2em] uppercase">
-                    {/* Text injected by GSAP */}
-                </p>
+            <div className="z-10 w-full max-w-7xl px-4 flex flex-col items-center gap-12">
+                <div className="text-center space-y-6">
+                    <h1 id="hero-title" className="font-sans font-bold text-[10vw] leading-none tracking-tighter text-ink-black dark:text-off-white">
+                        {/* Text injected by GSAP */}
+                    </h1>
+                    <p id="hero-subtitle" className="font-mono text-sm md:text-xl text-electric-amber tracking-[0.2em] uppercase">
+                        {/* Text injected by GSAP */}
+                    </p>
+                </div>
+
+                <div className="w-full max-w-2xl transform scale-90 md:scale-100 origin-top">
+                    <ContactTerminal />
+                </div>
             </div>
 
             {/* System Status Log */}
-            <div className="absolute bottom-12 left-12 font-mono text-xs text-electric-amber/80">
+            <div className="absolute bottom-12 left-12 font-mono text-xs text-electric-amber/80 hidden md:block">
                 <span className="w-2 h-2 bg-terminal-green inline-block rounded-full mr-2 animate-pulse" />
                 {statusLog}
             </div>

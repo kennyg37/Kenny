@@ -5,25 +5,42 @@ import Works from './components/Works'
 import SkillsTopology from './components/SkillsTopology'
 import ExperienceLog from './components/ExperienceLog'
 import BlogIndex from './components/BlogIndex'
-import ContactTerminal from './components/ContactTerminal'
+import Footer from './components/Footer'
+import { ThemeProvider, useTheme } from './context/ThemeContext'
 
-function App() {
+function Content() {
+    const { theme, toggleTheme } = useTheme()
+
     return (
         <SmoothScroll>
             <CustomCursor />
-            <main className="bg-void-black min-h-screen selection:bg-electric-amber selection:text-void-black">
+
+            {/* Theme Toggle - Fixed Top Right */}
+            <button
+                onClick={toggleTheme}
+                className="fixed top-6 right-6 z-50 p-2 rounded-full bg-tech-gray/20 backdrop-blur-md border border-tech-gray/30 hover:border-electric-amber transition-colors text-off-white mix-blend-difference"
+                aria-label="Toggle Theme"
+            >
+                {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
+
+            <main className="min-h-screen selection:bg-electric-amber selection:text-void-black bg-paper-white text-ink-black dark:bg-void-black dark:text-off-white transition-colors duration-500">
                 <Hero />
                 <Works />
                 <SkillsTopology />
                 <ExperienceLog />
                 <BlogIndex />
-                <ContactTerminal />
-                {/* Placeholder for future sections */}
-                <div className="h-screen flex items-center justify-center">
-                    <p className="font-mono text-tech-gray">More content coming soon...</p>
-                </div>
+                <Footer />
             </main>
         </SmoothScroll>
+    )
+}
+
+function App() {
+    return (
+        <ThemeProvider>
+            <Content />
+        </ThemeProvider>
     )
 }
 
